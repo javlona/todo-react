@@ -1,25 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component} from 'react';
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todoItems: [
+        {action: 'buy food', done: 'false'},
+        {action: 'call Mom', done: 'false'},
+        {action: 'schdedule meeting', done: 'false'},
+      ],
+      newTask: '',
+    }
+  }
+
+  showTodo = () => {
+    this.state.todoItems.map(item => (
+      <tr key={Date.now()}>
+        <td>{item.action}</td>
+      </tr>
+    ))
+  }
+
+  updateValue = (e) => {
+    this.setState({ newTask: e.target.value })
+    console.log(this.state.newTask)
+  }
+
+  render() {
+    
+    
+    return (
+      <div className="App">
+        <div className="container">
+          <h2>👋 TODO list</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>New tasks</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.showTodo() }
+            </tbody>
+          </table>
+          <form onSubmit={this.showTodo}>
+            <input 
+              onChange={ this.updateValue }
+              type="text" 
+              name="new-task" 
+              className="add-task"
+              defaultValue={this.state.newTask} 
+              placeholder="+ Add a task"/>
+          </form>
+        </div>
+      </div>
+    )
+  }
+
+
 }
 
-export default App;
+export default App
