@@ -23,13 +23,23 @@ class App extends Component {
     ))
   }
 
-  updateValue = (e) => {
+  changeHandler = (e) => {
     this.setState({ newTask: e.target.value })
     console.log(this.state.newTask)
   }
 
-  render() {
+  addTodo = (e) => {
+    e.preventDefault();
     
+    this.setState({todoItems: [
+        ...this.state.todoItems,
+        {action: this.state.newTask, done: false}
+      ]
+    })
+  }
+
+  render() {
+    console.log(this.state.todoItems)
     
     return (
       <div className="App">
@@ -45,9 +55,9 @@ class App extends Component {
               { this.showTodo() }
             </tbody>
           </table>
-          <form onSubmit={this.showTodo}>
+          <form onSubmit={ this.addTodo }>
             <input 
-              onChange={ this.updateValue }
+              onChange={ this.changeHandler }
               type="text" 
               name="new-task" 
               className="add-task"
