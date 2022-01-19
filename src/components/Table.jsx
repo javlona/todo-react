@@ -6,7 +6,7 @@ class Table extends Component {
     }
 
     render() {
-
+        console.log(this.props)
         return (
             <table>
                 <thead>
@@ -15,7 +15,7 @@ class Table extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.showTodo()}
+                    { this.props.showTodo() }
                 </tbody>
             </table>
         )

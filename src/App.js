@@ -10,9 +10,9 @@ class App extends Component {
     super(props);
     this.state = {
       todoItems: [
-        {action: 'buy food', done: 'false'},
-        {action: 'call Mom', done: 'false'},
-        {action: 'schdedule meeting', done: 'false'},
+        {action: 'buy food', done: false},
+        {action: 'call Mom', done: false},
+        {action: 'schdedule meeting', done: false},
       ],
       newTask: '',
     }
@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   showTodo = () => {
-    this.state.todoItems.map(item => (
+    return this.state.todoItems.map(item => (
       <tr key={ item.action }>
         <td>
           <input 
@@ -37,7 +37,7 @@ class App extends Component {
             className="checkbox-round"/>
         </td>
         <td>
-          {item.action}
+          { item.action }
         </td>
       </tr>
     ))
@@ -66,7 +66,7 @@ class App extends Component {
         <div className="container">
           <h2>👋 TODO list</h2>
           <Table 
-            showTodo={() => this.showTodo() }/>
+            showTodo={ this.showTodo }/>
           <Form 
             addTodo={ this.addTodo }
             changeHandler={ this.changeHandler }
