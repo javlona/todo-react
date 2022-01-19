@@ -66,7 +66,7 @@ class App extends Component {
         <div className="container">
           <h2>👋 TODO list</h2>
           <Table 
-            showTodo={ this.showTodo }/>
+            showTodo={() => this.showTodo() }/>
           <Form 
             addTodo={ this.addTodo }
             changeHandler={ this.changeHandler }
