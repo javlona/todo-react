@@ -1,4 +1,7 @@
 import React, { Component} from 'react';
+import Table from './components/Table'
+import Form from './components/Form'
+
 import './App.css'
 
 
@@ -15,10 +18,27 @@ class App extends Component {
     }
   }
 
+  toggleDone = (current) => {
+    this.setState({
+      todoItems: this.state.todoItems.map(item => 
+        item.action === current.action ? { ...item, done: !item.done } : item
+        )
+    })
+  }
+
   showTodo = () => {
     this.state.todoItems.map(item => (
-      <tr key={Date.now()}>
-        <td>{item.action}</td>
+      <tr key={ item.action }>
+        <td>
+          <input 
+            type="checkbox" 
+            checked={ item.done }
+            onChange={ () => this.toggleDone(item) }
+            className="checkbox-round"/>
+        </td>
+        <td>
+          {item.action}
+        </td>
       </tr>
     ))
   }
@@ -45,25 +65,12 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <h2>👋 TODO list</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>New tasks</th>
-              </tr>
-            </thead>
-            <tbody>
-              { this.showTodo() }
-            </tbody>
-          </table>
-          <form onSubmit={ this.addTodo }>
-            <input 
-              onChange={ this.changeHandler }
-              type="text" 
-              name="new-task" 
-              className="add-task"
-              defaultValue={this.state.newTask} 
-              placeholder="+ Add a task"/>
-          </form>
+          <Table 
+            showTodo={ this.showTodo }/>
+          <Form 
+            addTodo={ this.addTodo }
+            changeHandler={ this.changeHandler }
+            newTask={ this.state.newTask }/>
         </div>
       </div>
     )

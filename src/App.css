@@ -42,6 +42,7 @@ table {
 table {
   min-height: 70vh;
   width: 100%;
+  color: #fff;
 }
 
 form {
@@ -56,6 +57,23 @@ form {
   font-size: 17px;
   padding: 10px 15px;
   width: 95%;
+}
+
+.checkbox-round {
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.checkbox-round:checked {
+  background-color: rgb(107, 146, 252);
 }
 
 ::placeholder {
